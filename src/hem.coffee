@@ -38,6 +38,7 @@ class Hem
     paths:        ['./app']
     dependencies: []
     port:         process.env.PORT or argv.port or 9294
+    host:         argv.host or 'localhost'
     cssPath:      '/application.css'
     jsPath:       '/application.js'
 
@@ -67,7 +68,7 @@ class Hem
     if path.existsSync(@options.public)
       strata.use(strata.file, @options.public, ['index.html', 'index.htm'])
 
-    strata.run(port: @options.port)
+    strata.run(port: @options.port, host: @options.host)
 
   build: ->
     source = @hemPackage().compile(not argv.debug)
