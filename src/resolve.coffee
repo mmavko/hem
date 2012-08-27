@@ -30,6 +30,7 @@ module.exports = (request, parent = repl) ->
   throw("Cannot find module: #{request}. Have you run `npm install .` ?") unless filename
     
   # Find package root relative to localModules folder
+  modulePaths = Module._nodeModulePaths(dirname(filename))
   while dir not in invalidDirs and dir not in modulePaths
     dir = dirname(dir)
   
